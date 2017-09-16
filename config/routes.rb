@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :controllers
+  devise_for :scaffolds
   devise_for :students
   root 'welcome#index'
 
