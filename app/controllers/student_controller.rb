@@ -5,10 +5,9 @@ class StudentController < ApplicationController
   def print_student
     @student = params[:email][:username]
   end
-end
-# 4.1 hash se hace por defecto al hacer envio post de la gema devise
-def list
-  @students= Student.all
+  # 4.1 hash se hace por defecto al hacer envio post de la gema devise
+  def list
+    @students= Student.all
   end
 
   def show
@@ -17,7 +16,7 @@ def list
 
 
   def create
-    @student = Student.new(book_params)
+    @student = Student.new(student_params)
   end
 
   def edit
@@ -27,7 +26,7 @@ def list
   def update
     student = Student.find(params[:id])
 
-      if @student.update_attributes(book_param)
+      if @student.update_attributes(student_params)
          redirect_to :action => 'show', :id => @student
       end
   end
@@ -36,6 +35,8 @@ def list
     Student.find(params[:id]).destroy
       redirect_to :action => 'list'
   end
+  
   def student_params
    params.require(:email,:username).permit(:age, :iq, :grade, :who_likes_him)
+  end
 end
